@@ -25,35 +25,3 @@
  *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-// File: Model.java
-// Authors: {leighf,joshc}@csse.monash.edu.au
-
-package cdms.plugin.model;
-
-import cdms.core.*;
-
-/** Model module. */
-public class Model extends Module
-{
-  public static java.net.URL helpURL = Module.createStandardURL(Model.class);
-
-  public String getModuleName() { return "Model"; }
-  public java.net.URL getHelp() { return helpURL; }
-
-  public void install(Value params) throws Exception
-  {
-    Environment.env.add("uniform","Model",Uniform.uniform,
-                        "Uniform(y|lwb,upb)");
-
-    Environment.env.add("normal","Model",Normal.normal,
-                        "Normal(y|mu,sigma)");
-
-    Environment.env.add("weighted_normal","Model",WeightedNormal.weightedNormal,
-                        "Weighted Normal (y|mu,sigma)");
-
-    Environment.env.add("multinomialCreator", "Model", new Multinomial.MultinomialCreator(),
-                        "Multinomial Creator  (lwb,upb) -> multinomial");
-  }
-
-}
